@@ -7,7 +7,25 @@ npm run build   # writes ./dist (static HTML, sitemap.xml, robots.txt)
 npm run dev     # build + preview at http://localhost:4321
 ```
 
-Deploy `dist/` to any static host (Netlify, Vercel, Cloudflare Pages, S3). Set `baseUrl` in `data/site.js` first.
+### Demo on GitHub Pages
+
+`.github/workflows/pages.yml` builds and publishes the site to
+`https://<owner>.github.io/callyzer-alternatives/` on every push to `main`.
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+The demo build is `noindex` (meta robots + `robots.txt Disallow`) so it won't compete with the real domain later.
+
+Build-time env vars:
+
+| Var | Purpose | Demo value |
+|---|---|---|
+| `SITE_URL` | Absolute URL used for canonicals, OG tags, sitemap | `https://<owner>.github.io/callyzer-alternatives` |
+| `BASE_PATH` | Sub-folder prefix for internal links | `/callyzer-alternatives` |
+| `NOINDEX` | `1` = block search engines | `1` |
+
+### Production
+
+Deploy `dist/` to any static host (Netlify, Vercel, Cloudflare Pages, S3) with `SITE_URL` set to the real domain (or change the placeholder in `data/site.js`), and leave `BASE_PATH`/`NOINDEX` unset.
 
 ## Page types (generated from data)
 
@@ -20,7 +38,7 @@ Deploy `dist/` to any static host (Netlify, Vercel, Cloudflare Pages, S3). Set `
 | `/best-call-tracking-app-for-{industry}/` | `/best-call-tracking-app-for-real-estate/` | industries |
 | `/compare/`, `/industries/`, `/about/` | hubs + methodology/disclosure | 3 |
 
-With 5 competitors and 10 industries, that's 36 pages. Each new competitor adds `2 + N` pages, and internal links update automatically.
+With 5 competitors and 10 industries, that's 34 pages. Each new competitor adds `2 + N` pages, and internal links update automatically.
 
 Every page includes a canonical URL, OG tags, `FAQPage`, `BreadcrumbList` and `ItemList`/`Article` JSON-LD, and appears in the sitemap.
 
