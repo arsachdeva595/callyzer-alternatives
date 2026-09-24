@@ -1,0 +1,13 @@
+{
+  "name": "callyzer-alternatives",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Programmatic SEO site: Callyzer vs competitors, alternatives and industry guides for SIM-based telecalling teams.",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node src/build.js && node src/serve.js",
+    "serve": "node src/serve.js"
+  },
+  "engines": { "node": ">=18" }
+}
