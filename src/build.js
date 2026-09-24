@@ -16,10 +16,14 @@ rmSync(out, { recursive: true, force: true });
 cpSync(join(root, 'public'), out, { recursive: true });
 
 const pages = [];
+// Templates use root-relative links ("/compare/"); prefix them when the site
+// lives in a sub-folder (GitHub Pages project sites).
+const withBase = (html) => (site.basePath ? html.replace(/(href|src)="\/(?!\/)/g, `$1="${site.basePath}/`) : html);
+
 const emit = (path, html, priority = 0.7) => {
   const dir = join(out, path);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'index.html'), html);
+  writeFileSync(join(dir, 'index.html'), withBase(html));
   pages.push({ path, priority });
 };
 
@@ -41,6 +45,10 @@ writeFileSync(
     .map((p) => `  <url><loc>${abs(p.path)}</loc><lastmod>${site.lastUpdated}</lastmod><priority>${p.priority.toFixed(1)}</priority></url>`)
     .join('\n')}\n</urlset>\n`,
 );
-writeFileSync(join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${abs('/sitemap.xml')}\n`);
+writeFileSync(
+  join(out, 'robots.txt'),
+  site.noindex ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${abs('/sitemap.xml')}\n`,
+);
+writeFileSync(join(out, '.nojekyll'), '');
 
 console.log(`Built ${pages.length} pages into dist/`);

@@ -13,7 +13,7 @@ export function layout({ title, description, path, body, schema = [] }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${canonical}">
+<link rel="canonical" href="${canonical}">${site.noindex ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
