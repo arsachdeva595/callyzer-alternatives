@@ -258,6 +258,11 @@ export function connectRateToolPage() {
     </ul>
   </section>
 
+  <section class="section">
+    <h2>Related tool</h2>
+    <a class="card card-link" href="/tools/lead-leak-calculator/"><h3>Lead Leak Calculator →</h3><p>Connect rate shows how busy your team is. See how many sales you lose to unreturned missed calls and leads dropped after one or two tries.</p></a>
+  </section>
+
   ${faqBlock(faqs)}
   </div>
 

@@ -267,3 +267,38 @@ blockquote p { margin: 0 0 4px; }
 .sc-pt text { font-size: 12px; fill: var(--text); }
 .sc-pt.is-selected circle { fill: var(--primary); }
 .sc-pt.is-selected text { font-weight: 700; }
+
+/* ---------- tool: lead leak calculator ---------- */
+.form-h { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 6px 0 -4px; padding-top: 10px; border-top: 1px solid var(--line); }
+.form-h:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.leak-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+@media (max-width: 560px) { .leak-cards { grid-template-columns: 1fr; } }
+.leak-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; }
+.leak-card-k { display: block; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.leak-card strong { display: block; font-size: 1.5rem; margin: 2px 0 6px; color: var(--warn); font-variant-numeric: tabular-nums; }
+.leak-card p { margin: 0 0 8px; font-size: .9rem; }
+.leak-fix { color: var(--win); font-weight: 600; }
+.how { margin: 0 0 16px; font-size: .88rem; color: var(--muted); }
+.how summary { cursor: pointer; font-weight: 600; color: var(--text); }
+.how p { margin: 8px 0 0; }
+.notice { background: var(--primary-soft); border: 1px solid #cfe0fb; border-radius: var(--radius); padding: 14px 18px; margin: 24px 0 0; }
+.prose-wide { max-width: 980px; }
+.leak { border-top: 1px solid var(--line); padding-top: 32px; }
+.leak-num { display: inline-block; background: var(--warn-soft); color: var(--warn); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; border-radius: 999px; padding: 3px 10px; margin-bottom: 8px; }
+.lede-sm { font-size: 1.05rem; color: var(--muted); max-width: 820px; }
+.leak .cards-2 { margin: 16px 0; }
+@media (max-width: 760px) { .leak .cards-2 { grid-template-columns: 1fr; } }
+.leak .panel ul { margin: 0; }
+.leak .panel li { margin: 6px 0; }
+.bench-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0 20px; }
+.bench-tile { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; background: #fff; }
+.bench-tile strong { display: block; font-size: 1.8rem; line-height: 1.2; }
+.bench-tile span:last-child { font-size: .88rem; color: var(--muted); }
+.bench-tile.pending { border-style: dashed; background: var(--bg-alt); }
+.bench-tile.pending strong { color: #a0a7b4; }
+.bench-badge { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.verdict-tag { display: inline-block; font-size: .78rem; font-weight: 700; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.verdict-tag.ok { background: var(--win-soft); color: var(--win); }
+.verdict-tag.warn { background: #fff7e0; color: #9a6700; }
+.verdict-tag.no { background: var(--warn-soft); color: var(--warn); }
+.kpi-table td, .kpi-table th, #myths .matrix td, #myths .matrix th { vertical-align: top; }
