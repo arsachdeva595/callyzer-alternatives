@@ -10,6 +10,7 @@ import {
   homePage, vsPage, headToHeadPage, alternativesPage, industryPage, compareHub, industriesHub, aboutPage, h2hPath,
 } from './templates/pages.js';
 import { connectRateToolPage, TOOL_PATH } from './templates/tool.js';
+import { leadLeakPage, LEAK_PATH } from './templates/lead-leak.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'dist');
@@ -40,6 +41,7 @@ emit('/compare/', compareHub(pairs), 0.5);
 emit('/industries/', industriesHub(), 0.5);
 emit('/about/', aboutPage(), 0.3);
 emit(TOOL_PATH, connectRateToolPage(), 0.9);
+emit(LEAK_PATH, leadLeakPage(), 0.9);
 
 writeFileSync(
   join(out, 'sitemap.xml'),

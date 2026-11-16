@@ -30,6 +30,7 @@ ${schema.map(jsonLd).join('\n')}
     <a class="brand" href="/"><span class="brand-mark">C</span> ${esc(site.name)}</a>
     <nav class="topnav">
       <a href="/tools/call-connect-rate-benchmark/">Connect-rate benchmark</a>
+      <a href="/tools/lead-leak-calculator/">Lead leak calculator</a>
       <a href="/compare/">Comparisons</a>
       <a href="/industries/">By industry</a>
       <a href="/about/">Methodology</a>

@@ -39,6 +39,33 @@ Deploy `dist/` to any static host (Netlify, Vercel, Cloudflare Pages, S3) with `
 Files: `data/raw/*.csv` (source), `data/connect-rates.js` (counts only), `src/connect-rates.js` (all rates derived from counts), `src/templates/tool.js` (page), `public/tools/connect-rate.js` (calculator).
 Sub-industry labels are deliberately not used because some contain customer business names. Industries under 100,000 calls are shown but not ranked (`minRankedCalls`).
 
+## Tool: Lead Leak Calculator
+
+`/tools/lead-leak-calculator/` is a guide and calculator covering the three places telecalling teams lose leads: unreturned missed calls, giving up after one or two tries, and calling at the wrong hours. The calculator gives a monthly ₹ estimate for the first two from the visitor's own inputs, with the connect rate defaulting to the industry figure from the benchmark above. The page also explains why each leak happens, what the research says (with sources), how to fix it, and which KPIs to track, plus a myths-vs-evidence table.
+
+Benchmark tiles read from `data/response-benchmarks.js`. While a value is `null`, its tile shows "India benchmark · coming soon". **Only fill these with computed first-party numbers, never estimates.**
+
+### Data request for the lead-leak benchmarks
+
+Ask the data team for one row per call, anonymised, covering 1 Sep – 7 Nov 2026. The extra week lets callbacks to late-October missed calls be counted.
+
+| Column | Notes |
+|---|---|
+| `account_id` | Hashed. Needed so a colleague's callback counts as a callback |
+| `industry` | Same 24 main industries as the connect-rate CSV |
+| `rep_id` | Hashed |
+| `number_hash` | Customer number normalised (strip +91/0) and then hashed. Exclude internal, toll-free, short-code and 140/1600-series numbers |
+| `call_type` | incoming / outgoing / missed / rejected (say whether "blocked" or "never attended" are separate types) |
+| `start_ts` | IST timestamp |
+| `duration_s` | Talk seconds |
+
+If raw rows can't leave the warehouse, these per-industry aggregates are enough:
+1. **Missed calls:** share of missed episodes with no outgoing call to that number from anyone in the account within 7 days, the median and P75 minutes to the first callback, and the share returned within 1 hour.
+2. **Attempts:** among numbers first seen in the window and eventually connected, the cumulative share connected by attempts 1, 2, 3 and 6, and the share of never-connected numbers tried only once.
+3. **Timing:** answer rate (duration > 0) for outgoing calls by hour of day (9–20) × industry, with call counts.
+
+Report accounts and calls per industry, and suppress any cell with fewer than ~30 accounts.
+
 ## Page types (generated from data)
 
 | Pattern | Example | Count |
