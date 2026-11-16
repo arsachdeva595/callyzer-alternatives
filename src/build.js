@@ -9,6 +9,7 @@ import { abs, vsSlug, altSlug, industrySlug } from './lib.js';
 import {
   homePage, vsPage, headToHeadPage, alternativesPage, industryPage, compareHub, industriesHub, aboutPage, h2hPath,
 } from './templates/pages.js';
+import { connectRateToolPage, TOOL_PATH } from './templates/tool.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'dist');
@@ -38,6 +39,7 @@ industries.forEach((ind) => emit(industrySlug(ind), industryPage(ind), 0.7));
 emit('/compare/', compareHub(pairs), 0.5);
 emit('/industries/', industriesHub(), 0.5);
 emit('/about/', aboutPage(), 0.3);
+emit(TOOL_PATH, connectRateToolPage(), 0.9);
 
 writeFileSync(
   join(out, 'sitemap.xml'),
