@@ -27,6 +27,18 @@ Build-time env vars:
 
 Deploy `dist/` to any static host (Netlify, Vercel, Cloudflare Pages, S3) with `SITE_URL` set to the real domain (or change the placeholder in `data/site.js`), and leave `BASE_PATH`/`NOINDEX` unset.
 
+## Tool: Call Connect Rate Benchmark
+
+`/tools/call-connect-rate-benchmark/` is a one-page tool built on Callyzer's first-party call data for 24 industries, Sep–Oct 2026 (242M calls).
+
+- **Benchmark my team:** the user enters calls and connects for an industry and sees the gap to that industry's average, extra conversations at the benchmark, and how their rate ranks across industries.
+- **Plan my dials:** the user enters a conversations-per-day target and gets dials per day and reps needed.
+- Also includes a sortable industry leaderboard (outgoing, overall, incoming answer rate, dials per 100 conversations), an insight scatter, methodology, FAQ, and `Dataset`/`FAQPage` schema.
+- Inputs are mirrored into the URL, so results can be shared (copy link / WhatsApp).
+
+Files: `data/raw/*.csv` (source), `data/connect-rates.js` (counts only), `src/connect-rates.js` (all rates derived from counts), `src/templates/tool.js` (page), `public/tools/connect-rate.js` (calculator).
+Sub-industry labels are deliberately not used because some contain customer business names. Industries under 100,000 calls are shown but not ranked (`minRankedCalls`).
+
 ## Page types (generated from data)
 
 | Pattern | Example | Count |

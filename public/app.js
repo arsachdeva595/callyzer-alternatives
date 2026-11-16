@@ -1,6 +1,7 @@
 // Feature filter chips on ranked lists.
 document.querySelectorAll('.filters').forEach((group) => {
   const list = group.parentElement.querySelector('.rank-list');
+  if (!list) return;
   group.addEventListener('click', (e) => {
     const chip = e.target.closest('.chip');
     if (!chip) return;
